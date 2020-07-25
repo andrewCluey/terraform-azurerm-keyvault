@@ -27,6 +27,7 @@ resource "azurerm_key_vault" "key_vault" {
   network_acls {
     default_action = var.kv_default_action
     bypass         = "AzureServices"
+
     ip_rules       = var.kv_allowed_cidr
   }
 }
@@ -45,6 +46,7 @@ resource "azurerm_private_endpoint" "pe" {
     name                           = "${var.kv_name}-connection"
     is_manual_connection           = false
     private_connection_resource_id = azurerm_key_vault.key_vault.id
+    subresource_names              = ["vault"]
   }
 
   private_dns_zone_group {
