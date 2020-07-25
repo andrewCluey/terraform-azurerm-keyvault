@@ -50,12 +50,12 @@ variable "pe_subnet_name" {
   default     = null
 }
 
-variable "vnet_resource_group_name" {
+variable "pe_vnet_resource_group_name" {
   description = "The name of the resource group where the Private Endpoint subnet resides"
   type        = string
 }
 
-variable "vnet_name" {
+variable "pe_vnet_name" {
   description = "The name of the vNET where the Private Endpoint subnet is located"
   type        = string
 }

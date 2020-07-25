@@ -8,8 +8,8 @@ data "azurerm_resource_group" "app_resource_group" {
 
 data "azurerm_subnet" "pe_subnet" {
   name                 = var.pe_subnet_name
-  resource_group_name  = var.vnet_resource_group_name
-  virtual_network_name = var.vnet_name
+  resource_group_name  = var.pe_vnet_resource_group_name
+  virtual_network_name = var.pe_vnet_name
 }
 
 # Deploy the Resources
