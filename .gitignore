@@ -4,9 +4,21 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+**/terraform.tfstate.d
+**/terraform.tfstate.backup
+**/.terraform.tfstate.lock.info
+**/~*.*
+**/backend.azurerm.tf
+
+# .tfplan files
+**/*.tfplan
 
 # Crash log files
 crash.log
+**/*.log
+
+.DS_Store
+public
 
 # Ignore any .tfvars files that are generated automatically for each Terraform run. Most
 # .tfvars files are managed as part of configuration and so should be included in
@@ -27,3 +39,4 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+
