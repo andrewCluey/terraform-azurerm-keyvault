@@ -5,12 +5,12 @@ Terraform module to deploy KeyVault with a Private Endpoint
 ```hcl
 resource "azurerm_resource_group" "resource_group" {
   name     = "resources"
-  location = "West Europe"
+  location = "westeurope"
 }
 
 module "storageaccount" {
   source  = "gitrepo/keyvault/azurerm"
-  version = "0.0.1"
+  version = "0.1.1"
 
   resource_group_name         = azurerm_resource_group.resource_group.name
   kv_name                     = "nameofkeyvault"
@@ -19,7 +19,8 @@ module "storageaccount" {
   pe_subnet_name              = "privateendpoint-subnet-name"
   private_vault_dns_zone_name = "privatelink.vaultcore.windows.net"
   private_vault_dns_zone_id   = "/subscriptions/xxxxxxxxuuuuuuuuu/resourceGroups/dnszoneResourceGroup/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
-  tags = { Terraform = "true",
+  tags = { 
+    Terraform = "true",
     environment = "DEV"
   }
 }

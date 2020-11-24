@@ -4,18 +4,12 @@
 variable "location" {
   description = "The Azure region to deploy the resources to. Defaults to West Europe."
   type        = string
-  default     = "West Europe"
+  default     = "westeurope"
 }
 
 variable "resource_group_name" {
   description = "The name of the resource group where the new KEY VAULT should be created."
   type        = string
-}
-
-variable "tenant_id" {
-  description = "The Id of the Azure AD Tenant where the resources will be created"
-  type        = string
-  default     = null
 }
 
 variable "tags" {
