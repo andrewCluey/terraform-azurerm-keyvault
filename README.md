@@ -8,15 +8,16 @@ resource "azurerm_resource_group" "resource_group" {
   location = "westeurope"
 }
 
-module "storageaccount" {
+module "keyvault" {
   source  = "gitrepo/keyvault/azurerm"
-  version = "0.1.1"
 
   resource_group_name         = azurerm_resource_group.resource_group.name
+  location                    = "westeurope"
   kv_name                     = "nameofkeyvault"
   vnet_resource_group_name    = "privateendpoint-vnet-resourcegroup"
   vnet_name                   = "privateendpoint-vnet-name"
-  pe_subnet_name              = "privateendpoint-subnet-name"
+  kv_allowed_cidr             = ["10.0.0.0/24","10.1.0.0/24"]
+  pe_subnet_id                = data.azurerm_subnet.default.id
   private_vault_dns_zone_name = "privatelink.vaultcore.windows.net"
   private_vault_dns_zone_id   = "/subscriptions/xxxxxxxxuuuuuuuuu/resourceGroups/dnszoneResourceGroup/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
   tags = { 

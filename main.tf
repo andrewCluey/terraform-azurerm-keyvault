@@ -2,17 +2,7 @@
 # Creates a New KeyVault & Private Endpoint
 ###########################################
 
-data "azurerm_resource_group" "app_resource_group" {
-  name = var.resource_group_name
-}
-
-data "azurerm_subnet" "pe_subnet" {
-  name                 = var.pe_subnet_name
-  resource_group_name  = var.pe_vnet_resource_group_name
-  virtual_network_name = var.pe_vnet_name
-}
-
-# Deploy the Resources
+# Deploy the KeyVault
 resource "azurerm_key_vault" "key_vault" {
   name                        = var.kv_name
   location                    = var.location
@@ -22,25 +12,25 @@ resource "azurerm_key_vault" "key_vault" {
   sku_name                    = "standard"
   soft_delete_enabled         = true
   purge_protection_enabled    = true
+  enable_rbac_authorization   = true
   tags                        = var.tags
 
   network_acls {
     default_action = var.kv_default_action
     bypass         = "AzureServices"
-
     ip_rules       = var.kv_allowed_cidr
   }
 }
 
 ################################
-# Creates a new Private Endpoint
+# Create a new Private Endpoint
 ################################
 
 resource "azurerm_private_endpoint" "pe" {
   name                = "${var.kv_name}-pe"
   location            = var.location
-  resource_group_name = data.azurerm_resource_group.app_resource_group.name
-  subnet_id           = data.azurerm_subnet.pe_subnet.id
+  resource_group_name = var.resource_group_name
+  subnet_id           = var.pe_subnet_id
 
   private_service_connection {
     name                           = "${var.kv_name}-connection"

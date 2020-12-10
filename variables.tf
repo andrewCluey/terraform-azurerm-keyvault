@@ -27,9 +27,13 @@ variable "kv_name" {
 }
 
 variable "kv_allowed_cidr" {
-  description = "One or IP address (in CIDR notation) that can access the KeyVault."
+  description = "One or more IP addresses (in CIDR notation) that can access the KeyVault."
   type        = list(string)
-  default     = null
+  
+#### EXAMPLE ####
+  /*
+  kv_allowed_cidr = ["10.0.0.0/24","10.1.0.0/24"]
+  */
 }
 
 variable "kv_default_action" {
@@ -38,28 +42,17 @@ variable "kv_default_action" {
   default     = "Deny"
 }
 
-variable "pe_subnet_name" {
-  description = "name of the subnet where the new Private Endpoint for KeyVault should be created."
-  type        = string
-  default     = null
-}
-
-variable "pe_vnet_resource_group_name" {
-  description = "The name of the resource group where the Private Endpoint subnet resides"
-  type        = string
-}
-
-variable "pe_vnet_name" {
-  description = "The name of the vNET where the Private Endpoint subnet is located"
+variable "pe_subnet_id" {
+  description = "The ID of the Azure Subnet where the new private Endpoint for the Key vault will be created."
   type        = string
 }
 
 variable "private_vault_dns_zone_name" {
-  description = "The name of the Private DNS zone for Privatelink VaultCore"
+  description = "The name of the Private DNS zone for Private Endpoint"
   type        = string
 }
 
 variable "private_vault_dns_zone_id" {
-  description = "The ID of the Private DNS zone for Privatelink VaultCore"
+  description = "The ID of the Private DNS zone for Private Endpoint"
   type        = string
 }
