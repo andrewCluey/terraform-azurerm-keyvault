@@ -15,9 +15,9 @@ module "keyvault" {
   location                    = "westeurope"
   kv_name                     = "nameofkeyvault"
   vnet_resource_group_name    = "privateendpoint-vnet-resourcegroup"
-  vnet_name                   = "privateendpoint-vnet-name"
   kv_allowed_cidr             = ["10.0.0.0/24","10.1.0.0/24"]
   pe_subnet_id                = data.azurerm_subnet.default.id
+  soft_delete_retention_days  = 21
   private_vault_dns_zone_name = "privatelink.vaultcore.windows.net"
   private_vault_dns_zone_id   = "/subscriptions/xxxxxxxxuuuuuuuuu/resourceGroups/dnszoneResourceGroup/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
   tags = { 
