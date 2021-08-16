@@ -35,6 +35,7 @@ variable "kv_name" {
 variable "kv_allowed_cidr" {
   description = "One or more IP addresses (in CIDR notation) that can access the KeyVault."
   type        = list(string)
+  default     = []
   
 #### EXAMPLE ####
   /*
