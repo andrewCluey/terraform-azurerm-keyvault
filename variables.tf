@@ -18,6 +18,12 @@ variable "tags" {
   default     = null
 }
 
+variable "tenant_id" {
+  type        = string
+  description = "The ID of the Azure Tenant that should be used for authenticating requests to the key vault."
+}
+
+
 ####################################
 # Variables specific to this module.
 ####################################
