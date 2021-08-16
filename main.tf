@@ -10,7 +10,6 @@ resource "azurerm_key_vault" "key_vault" {
   enabled_for_disk_encryption = true
   tenant_id                   = var.tenant_id
   sku_name                    = "standard"
-  soft_delete_enabled         = true
   purge_protection_enabled    = var.purge_protection_enabled
   enable_rbac_authorization   = true
   soft_delete_retention_days  = var.soft_delete_retention_days
