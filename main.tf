@@ -38,7 +38,7 @@ resource "azurerm_private_endpoint" "pe" {
     name                           = "${var.kv_name}-connection"
     is_manual_connection           = false
     private_connection_resource_id = azurerm_key_vault.key_vault.id
-    subresource_names              = ["blob"]
+    subresource_names              = ["vault"]
   }
 
   private_dns_zone_group {
