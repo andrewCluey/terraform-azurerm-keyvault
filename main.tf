@@ -17,9 +17,10 @@ resource "azurerm_key_vault" "key_vault" {
   tags                        = var.tags
 
   network_acls {
-    default_action = var.kv_default_action
-    bypass         = "AzureServices"
-    ip_rules       = var.kv_allowed_cidr
+    default_action             = var.kv_default_action
+    bypass                     = "AzureServices"
+    ip_rules                   = var.kv_allowed_cidr
+    virtual_network_subnet_ids = var.allowed_subnet_ids
   }
 }
 

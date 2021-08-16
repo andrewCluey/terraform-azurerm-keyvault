@@ -75,3 +75,9 @@ variable "purge_protection_enabled" {
   description = "Is Purge Protection enabled. True/False"
   default     = false
 }
+
+variable "allowed_subnet_ids" {
+  type        = list(string)
+  description = "A list of subnet IDs that are allowed to access this Key Vault."
+  default     = []
+}
