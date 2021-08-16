@@ -56,3 +56,15 @@ variable "private_vault_dns_zone_id" {
   description = "The ID of the Private DNS zone for Private Endpoint"
   type        = string
 }
+
+variable "soft_delete_retention_days" {
+  type        = number
+  description = "The number of days to retain items once soft-deleted."
+  default     = 90
+}
+
+variable "purge_protection_enabled" {
+  type        = bool
+  description = "Is Purge Protection enabled. True/False"
+  default     = false
+}
