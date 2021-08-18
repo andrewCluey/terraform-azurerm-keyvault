@@ -83,7 +83,7 @@ variable "allowed_subnet_ids" {
 }
 
 
-variable "kv_pe_name " {
+variable "kv_pe_name" {
   type        = string
   description = "The name to assign to the new private endpoint being assigned to the Key vault."
   default     = ""
