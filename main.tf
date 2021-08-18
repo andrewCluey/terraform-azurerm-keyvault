@@ -1,3 +1,8 @@
+locals {
+  kv_pe_name = var.kv_pe_name != "" ? var.kv_pe_name : "${var.kv_name}-pip"
+}
+
+
 ###########################################
 # Creates a New KeyVault & Private Endpoint
 ###########################################
@@ -28,7 +33,7 @@ resource "azurerm_key_vault" "key_vault" {
 ################################
 
 resource "azurerm_private_endpoint" "pe" {
-  name                = "${var.kv_name}-pe"
+  name                = local.kv_pe_name 
   location            = var.location
   resource_group_name = var.resource_group_name
   subnet_id           = var.pe_subnet_id
