@@ -4,6 +4,7 @@ variable "kv_config" {
     location = string
     resource_group_name = string
     sku_name = string
+    soft_delete_retention_days = string
   })
 }
 
