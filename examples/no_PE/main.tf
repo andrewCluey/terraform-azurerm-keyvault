@@ -5,8 +5,8 @@ resource "azurerm_resource_group" "kv_test" {
 
 
 module "test_key_vault" {
-  source = "../../"
-
+  source  = "andrewCluey/keyvault/azurerm//examples/no_PE"
+  
   kv_config = {
     name                       = "kv-asc97687-test"
     location                   = azurerm_resource_group.kv_test.location

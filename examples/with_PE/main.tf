@@ -23,7 +23,7 @@ resource "azurerm_subnet" "example" {
 
 
 module "test_key_vault" {
-  source = "../../"
+  source  = "andrewCluey/keyvault/azurerm//examples/no_PE"
 
   kv_config = {
     name                = "kv-test-deployment"
