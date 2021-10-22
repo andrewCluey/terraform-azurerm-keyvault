@@ -4,7 +4,6 @@ data "azurerm_client_config" "current" {
 ########################################################################################################################
 # Creates a New KeyVault & Private Endpoint
 ########################################################################################################################
-
 # Deploy the KeyVault
 resource "azurerm_key_vault" "key_vault" {
   name                        = var.kv_config.name
@@ -13,7 +12,7 @@ resource "azurerm_key_vault" "key_vault" {
   sku_name                    = var.kv_config.sku_name
   enabled_for_disk_encryption = true
   tenant_id                   = data.azurerm_client_config.current.tenant_id
-  soft_delete_enabled         = true
+  #soft_delete_enabled         = true
   soft_delete_retention_days  = var.kv_config.soft_delete_retention_days
   purge_protection_enabled    = true
   enable_rbac_authorization   = true
@@ -50,12 +49,9 @@ resource "azurerm_private_endpoint" "pe" {
   }
 }
 
-
-
 ################################
 # Create Role Assignments
 ################################
-
 locals {
   principal_roles_list = flatten([  # Produce a list object, containing mapping of role names to principal IDs.
     for role, principals in var.role_assignments : [
@@ -66,9 +62,11 @@ locals {
     ]
   ])
 
-  principal_roles_map = { # convert the above list to a map
-      for obj in local.principal_roles_list : obj.principal => obj
+  principal_roles_tuple = {
+    for obj in local.principal_roles_list : "${obj.role}_${obj.principal}" => obj
   }
+
+  principal_roles_map = tomap(local.principal_roles_tuple)
 
 }
 

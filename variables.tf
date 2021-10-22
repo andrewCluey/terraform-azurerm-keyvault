@@ -16,14 +16,13 @@ variable "kv_default_action" {
 }
 
 variable "kv_allowed_cidr" {
-  description = "One or more IP addresses (in CIDR notation) that can access the KeyVault."
+  description = <<EOF
+  One or more IP addresses (in CIDR notation) that can access the KeyVault.
+  EXAMPLE:
+  kv_allowed_cidr = ["77.66.55.0/24","21.22.23.0/18"]
+EOF
   type        = list(string)
   default     = []
-  
-#### EXAMPLE ####
-  /*
-  kv_allowed_cidr = ["77.66.55.0/24","21.22.23.0/18"]
-  */
 }
 
 variable "role_assignments" {

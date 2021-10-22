@@ -35,12 +35,12 @@ module "test_key_vault" {
   pe_name                     = "kv-test-deployment-pe"
   pe_subnet_id                = azurerm_subnet.example.id
   private_vault_dns_zone_name = "privatelink.vaultcore.azure.net"
-  private_vault_dns_zone_ids  = ["/subscriptions/7ddf-subscription-id-8be98/resourceGroups/rg-test/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net"]
+  private_vault_dns_zone_ids  = ["/subscriptions/7df4fea2-d719-4abe-890b-37cd0298be98/resourceGroups/fw-test/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net"]
 
   role_assignments = {
-    "Key Vault Secrets User"    = ["89c260bb-object-ID-768", "object-id-a086-dfdgvrd906fea"],
+    "Key Vault Secrets User"    = ["89c260bb-3eda-49b1-ba66-a6e4cb21d768", "d7bc8715-fab1-41cc-a086-d9abdb906fea"],
     "Contributor"               = ["4c9e9244-319f-497c-b6f7-399bc80c559e"],
-    "Key Vault Secrets Officer" = [""]
+    "Key Vault Secrets Officer" = ["71dedafe-2dcb-435b-9166-cfb3cbe251b2"]
   }
 
 }
