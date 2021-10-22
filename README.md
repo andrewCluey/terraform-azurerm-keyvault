@@ -70,7 +70,7 @@ module "keyvault" {
   
   role_assignments = {
     "Key Vault Secrets User"    = ["22faewf-we4r-3q4v-w3df-34rfweafawe"]
-    "Contributor"               = ["22rfaewf-we4r-3q4v-w3df-34rfweafawe"]
+    "Contributor"               = ["22faewf-we4r-3q4v-w3df-34rfweafawe"]
     "Key Vault Secrets Officer" = []
     "Owner"                     = ["87f4fe47-wsdf-34rt-974fr-432ed0arght"]
   }
