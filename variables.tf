@@ -1,9 +1,9 @@
 variable "kv_config" {
   type = object({
-    name = string
-    location = string
-    resource_group_name = string
-    sku_name = string
+    name                       = string
+    location                   = string
+    resource_group_name        = string
+    sku_name                   = string
     soft_delete_retention_days = string
   })
 }
@@ -26,8 +26,9 @@ EOF
 }
 
 variable "role_assignments" {
-    type = any
-    description = <<EOF
+  type        = any
+  default     = {}
+  description = <<EOF
     "Define a map of Roles (either Custom or Built-In) to Princpal IDs, scoped to the new Key Vault.
     EXAMPLE:
     role_assignments = {

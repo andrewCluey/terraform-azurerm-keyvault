@@ -13,10 +13,10 @@ resource "azurerm_key_vault" "key_vault" {
   enabled_for_disk_encryption = true
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   #soft_delete_enabled         = true
-  soft_delete_retention_days  = var.kv_config.soft_delete_retention_days
-  purge_protection_enabled    = true
-  enable_rbac_authorization   = true
-  tags                        = var.tags
+  soft_delete_retention_days = var.kv_config.soft_delete_retention_days
+  purge_protection_enabled   = true
+  enable_rbac_authorization  = true
+  tags                       = var.tags
 
   network_acls {
     default_action = var.kv_default_action
@@ -53,12 +53,12 @@ resource "azurerm_private_endpoint" "pe" {
 # Create Role Assignments
 ################################
 locals {
-  principal_roles_list = flatten([  # Produce a list object, containing mapping of role names to principal IDs.
+  principal_roles_list = flatten([ # Produce a list object, containing mapping of role names to principal IDs.
     for role, principals in var.role_assignments : [
-        for principal in principals: {
-            role = role
-            principal = principal
-        }
+      for principal in principals : {
+        role      = role
+        principal = principal
+      }
     ]
   ])
 
