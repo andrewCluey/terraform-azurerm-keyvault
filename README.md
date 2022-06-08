@@ -63,13 +63,21 @@ resource "azurerm_resource_group" "resource_group" {
 
 module "keyvault" {
   source  = "gitrepo/keyvault/azurerm"
-  resource_group_name         = azurerm_resource_group.resource_group.name
-  location                    = "uksouth"
-  kv_name                     = "nameofkeyvault"
+  
+  kv_config = {
+    name                       = "kv-asc97687-test"
+    location                   = azurerm_resource_group.resource_group.location
+    resource_group_name        = azurerm_resource_group.resource_group.name
+    sku_name                   = "standard"
+    soft_delete_retention_days = "90"
+  }
+  
   kv_allowed_cidr             = ["77.66.55.0/24","21.22.23.0/18"]
   pe_subnet_id                = data.azurerm_subnet.pe_subnet.id
   private_vault_dns_zone_name = "privatelink.vaultcore.windows.net"
   private_vault_dns_zone_ids  = "/subscriptions/xxxxxxxxuuuuuuuuu/resourceGroups/dnszoneResourceGroup/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
+  
+  
   
   role_assignments = {
     "Key Vault Secrets User"    = ["ObjectId-we4r-3q4v-w3df-34rfweafawe"]
