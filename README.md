@@ -50,34 +50,32 @@ Instead, the ObjectID has to be obtained from the command line using this AZ CLi
 ## Usage
 
 ```js
+data "azurerm_subnet" "pe_subnet" {
+  name                 = "private"
+  virtual_network_name = "vnet-app1"
+  resource_group_name  = "rg-network-app1"
+}
+
 resource "azurerm_resource_group" "resource_group" {
-  name     = "resources"
+  name     = "rg-app1-resources"
   location = "uksouth"
 }
 
 module "keyvault" {
   source  = "gitrepo/keyvault/azurerm"
-
   resource_group_name         = azurerm_resource_group.resource_group.name
   location                    = "uksouth"
   kv_name                     = "nameofkeyvault"
-  vnet_resource_group_name    = "rg-vnet"
-  vnet_name                   = "vnet-name"
   kv_allowed_cidr             = ["77.66.55.0/24","21.22.23.0/18"]
-  pe_subnet_id                = data.azurerm_subnet.default.id
+  pe_subnet_id                = data.azurerm_subnet.pe_subnet.id
   private_vault_dns_zone_name = "privatelink.vaultcore.windows.net"
-  private_vault_dns_zone_id   = "/subscriptions/xxxxxxxxuuuuuuuuu/resourceGroups/dnszoneResourceGroup/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
+  private_vault_dns_zone_ids  = "/subscriptions/xxxxxxxxuuuuuuuuu/resourceGroups/dnszoneResourceGroup/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
   
   role_assignments = {
-    "Key Vault Secrets User"    = ["22faewf-we4r-3q4v-w3df-34rfweafawe"]
-    "Contributor"               = ["22faewf-we4r-3q4v-w3df-34rfweafawe"]
+    "Key Vault Secrets User"    = ["ObjectId-we4r-3q4v-w3df-34rfweafawe"]
+    "Contributor"               = ["ObjectId-we4r-3q4v-w3df-34rfweafawe"]
     "Key Vault Secrets Officer" = []
-    "Owner"                     = ["87f4fe47-wsdf-34rt-974fr-432ed0arght"]
-  }
-  
-  tags = { 
-    Terraform = "true",
-    environment = "DEV"
+    "Owner"                     = ["ObjectId-wsdf-34rt-974fr-432ed0arght"]
   }
 }
 ```
