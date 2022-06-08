@@ -61,8 +61,8 @@ module "keyvault" {
   resource_group_name         = azurerm_resource_group.resource_group.name
   location                    = "uksouth"
   kv_name                     = "nameofkeyvault"
-  vnet_resource_group_name    = "privateendpoint-vnet-resourcegroup"
-  vnet_name                   = "privateendpoint-vnet-name"
+  vnet_resource_group_name    = "rg-vnet"
+  vnet_name                   = "vnet-name"
   kv_allowed_cidr             = ["77.66.55.0/24","21.22.23.0/18"]
   pe_subnet_id                = data.azurerm_subnet.default.id
   private_vault_dns_zone_name = "privatelink.vaultcore.windows.net"
